@@ -1,11 +1,12 @@
 unit Jeu;
 
+interface
 
 uses init,crt;
 
 implementation
 	
-procedure InitialisationJoueur (T: Team ; taille : Integer);
+procedure InitialisationJoueur (T: Team ; taille : Integer ; P: Possession);
 var tab : array [1..10] of String;
 var i,numPion,j,k : Integer;
 
@@ -25,50 +26,56 @@ begin
 
 writeln ('Entrez le nombre de Joueurs ');
 readln (taille);
-while ((taille < 2 ) or (taille > 8)) do
-	begin
-		writeln ('Le nombre de Joueurs doit être compris entre 2 et 8');
-		writeln ('Entrez le nombre de Joueurs ');
-		read (taille);
-	end;
 
-for i:=1 to taille do
-	With T[i] do
+
+	while ((taille < 2 ) or (taille > 8)) do
+	
 		begin
+			writeln ('Le nombre de Joueurs doit être compris entre 2 et 8');
+			writeln ('Entrez le nombre de Joueurs ');
+			read (taille);
+		end;
+
+	for i:=1 to taille do
+		begin
+			With T[i] do
+			
+			begin
 			numcase:= 0;
 			budget := 1200 ;
 			coordx := 0;
 			coordy:= 0;
 			writeln ('Entrez votre pseudo');
-			readln (pseudo);
+			readln (nom);
 			
 			writeln ('Voici les différents pions');
+			
 				for j:=1 to 11-i do
-				writeln (j,'     ',tab[j]);
- 				writeln ('Entrez le numéro du pion');
-				read (numPion);
+					writeln (j,'     ',tab[j]);
+					writeln ('Entrez le numéro du pion');
+					read (numPion);
+				
 					while ((numPion < 1 ) or (numPion > 10)) do
 					
-						begin
+					begin
 						writeln ('Le nombre de Pions doit être compris entre 1 et 10');
 						writeln ('Entrez le numéro du pion');
 						read (numPion);
-						end;
-						
-			pion := tab[numPion];
-			for j := numPion to 9 do
-				tab[j] := tab[j+1];
-	
-			
-			for j:=1 to 2 do
-				for k:= 1 to 30 do
-					possession[j][k]:=0;
+					end;
 					
-			ordre:=i;
+					pion :=tab[numPion];
+					
+				for j := numPion to 9 do
+					tab[j] := tab[j+1];
+					
+				ordre:=i;
 				
 		end;
-
-
+		
+		for j:=1 to 2 do
+				for k:= 1 to 30 do
+					P[j][k]:=0;
+	end;
 end;
 
 end.
