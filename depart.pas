@@ -1,4 +1,4 @@
-unit Jeu1;
+unit depart;
 
 interface
 const MAX = 8;
